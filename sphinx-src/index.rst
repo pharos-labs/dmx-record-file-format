@@ -60,7 +60,7 @@ The contents of the body might look something like this for a recording containi
     │ └── 3
     └── metadata
 
-The body contains a directory called "recording" which contains a file for each universe. The files are numbered sequentially starting from 0, and contain the universe data as described below.
+The body contains a directory called "recording" which contains a file for each universe. The files have numbers for titles, where the number corresponds to universe number as described below.
 
 The body also contains a metadata file, which is JSON-encoded data about the recording.
 
@@ -108,7 +108,17 @@ The JSON contains the following fields:
    * - ``frame_rate``
      - The rate at which the universe data should be played back. Supported rates are up to 50 frames per second
    * - ``number``
-     - The universe number
+     - The universe number - see below
+
+Universes are numbered depending on the protocol type:
+
+For sACN, they are the sACN universe number minus one. So for example sACN universe 1 is shown as universe 0, universe 38 would be numbered 37.
+
+For Art-Net, the Art-Net Net, Subnet and Universe values are combined to a single number combined as::
+
+  Net << 8 | Subnet << 4 | Universe
+
+So for example, Net 1, subnet 3, universe 4 would be 308.
 
 Universe Data File
 ==================
