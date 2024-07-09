@@ -1,0 +1,4 @@
+sphinx==7.2.6
+sphinx-lint==0.9.1
+furo==2024.1.29
+myst-parser==3.0.1
