@@ -68,7 +68,6 @@ with open(recordingFilePath, 'rb') as pdRecFile:
                 metadata = json.load(metaDataFile)
                 print(f'Description: {metadata['description']}')
                 print(f'Duration: {metadata['duration']} milliseconds')
-                print(f'Name: {metadata['name']}')
                 print(f'Protocol: {metadata['protocol']}')
                 print(f'Recording started at: {strftime('%Y-%m-%d %H:%M:%S', localtime(metadata['start_timestamp']))}')
 

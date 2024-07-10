@@ -75,7 +75,6 @@ The Metadata file contains information about the recording. A typical example mi
     {
         "description": "Example DMX Recording",
         "duration": 10000,
-        "name": "ExampleRecording",
         "protocol": "sACN",
         "start_timestamp": 1711400171,
         "universes": [
@@ -164,7 +163,6 @@ A sample run might look like::
   > python create-recording.py
   Creating a Sinewave DMX Recording File
   Enter recording description: My sample Sinewave
-  Enter recording name: Sine
   Enter number of Universes: 3
   Enter recording length, in seconds: 60
   Enter sinewave frequency, in Hz: 1
@@ -190,7 +188,6 @@ It will output the metadata and information about the data encoded in the file::
   File UUID is 36dcb2c4-3611-db90-f94d-6c0d704587c2
   Description: My sample Sinewave
   Duration: 60000 milliseconds
-  Name: Sine
   Protocol: sACN
   Recording started at: 2024-07-09 14:28:14
   Contains 3 universes

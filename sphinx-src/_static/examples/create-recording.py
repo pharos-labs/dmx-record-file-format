@@ -70,7 +70,6 @@ def write_recording_header(outputFile):
 def main():
     print("Creating a Sinewave DMX Recording File")
     description = input("Enter recording description: ")
-    name = input("Enter recording name: ")
     protocol = 'sACN' # Default to sACN, can be sACN or ArtNet
     universes = int(input("Enter number of Universes: "))
     length = int(input("Enter recording length, in seconds: "))
@@ -85,7 +84,6 @@ def main():
         metadata = {}
         metadata['description'] = description
         metadata['duration'] = math.floor(length * 1000) # Duration in millisec
-        metadata['name'] = name
         metadata['protocol'] = protocol
         metadata['start_timestamp'] = timestamp # Epoch timestamp
         metadata['universes'] = []
