@@ -17,7 +17,7 @@ DMX recording files are a binary format and have a file extension of .PDREC
 Overall File Format
 ===================
 
-The file consists of tarred gzip data prefixed by a file header
+The file consists of tarred gzip data prefixed by a file header.
 
 File Header
 ===========
@@ -34,15 +34,15 @@ The file starts with a header which has a length of 22 bytes. The content of the
      - Notes
    * - Identifier
      - 4
-     - ``Cage``
+     - ``0x43 0x61 0x67 0x65`` (that is, 'Cage' in ASCII)
      - Magic header to identify file type
    * - Version
      - 2
-     - ``0`` (16 bit unsigned integer)
+     - ``0`` (16 bit unsigned integer, big-endian)
      - File version number. Currently only version 0 is supported
    * - UUID
      - 16
-     - UUID encoded according to RFC 4122
+     - UUID encoded according to RFC 4122 (big-endian)
      - A Unique Identifier for the file
 
 File Body
@@ -127,14 +127,19 @@ The universe data files contain the actual timed DMX data for output.
 
 The universe file has a format broken across two lines: The first line includes an ascending timestamp in nanoseconds, the second line includes the DMX data encoded in hexadecimal format.
 
-An example pair might look like::
+A section of an example file might look like::
 
-    60000000
-    afafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf[...]
+  60000000
+  afafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf[...]
+  80000000
+  bdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbd[...]
 
-In this example, the timestamp is 60000000 nanoseconds (that is, 0.06 seconds through the capture), and the DMX levels are all at level 0xaf, that is 175.
 
-If say DMX address 3 was at 255 and all other channels were at zero, it might look like::
+In this example, the timestamp is 60000000 nanoseconds (that is, 0.06 seconds through the capture), and then 80000000 nanoseconds, and the DMX levels are all at level 0xaf, that is 175 and then all at 0xbd, that is, 189.
+
+The data lines are always 512 bytes long, and the start code is not included (as we only deal with DMX levels).
+
+If DMX address 3 was at 255 and all other channels were at zero, it might look like::
 
     60000000
     0000FF0000000000000000000000000000000000000000000000000000000000000000[...]
