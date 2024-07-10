@@ -99,13 +99,13 @@ The JSON contains the following fields:
    * - ``duration``
      - The total length of the recording, in milliseconds
    * - ``protocol``
-     - The protocol used for the recording, ``sACN`` or ``Artnet``
+     - The protocol used for the recording, ``sACN`` or ``Art-Net``
    * - ``start_timestamp``
      - The time at which the recording was started, as a Unix Epoch start_timestamp
    * - ``universes``
      - An array of universes - each universe must specify a ``frame_rate`` and a ``number``
    * - ``frame_rate``
-     - The rate at which the universe data should be played back. Supported rates are up to 50 frames per second
+     - Used by Designer while interpreting the data, this should be the lowest frame rate across all of the universes in the recording.
    * - ``number``
      - The universe number - see below
 
@@ -146,7 +146,7 @@ If DMX address 3 was at 255 and all other channels were at zero, it might look l
 Example Code
 ============
 
-In order to assist with interpreting the format, a some examples of reading and writing DMX recording files have been prepared. You can find those at the links below.
+In order to assist with interpreting the format, some examples of reading and writing DMX recording files have been prepared. You can find those at the links below.
 
 These examples are written in Python. To use them, you will need a 3.x version of Python available from https://www.python.org/
 
